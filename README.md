@@ -18,7 +18,8 @@ Using web scraping in order to check RTX 3080 stock in NVIDIA webpage
 ## Recommended setup
 
 Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as crontab in GNU/Linux. 
-***Note:*** Linux version of the scrpaer is also more advanced
+
+***Note:*** Linux version of the scraper is also more advanced.
 
 ## How to set up task scheduler in GNU/Linux
 

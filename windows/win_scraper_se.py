@@ -9,43 +9,62 @@ URL = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-e
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
+N = 4
 
-# Start webdriver
-driver = webdriver.Chrome(PATH)
-driver.get(URL)
-time.sleep(5)
-
-# Check if there is stock
-stock = driver.find_elements_by_link_text("AGOTADO")
-
-if stock == []:
+def sendMsg(sender_addr, receiver_addr, subject, body):
     # Create message object instance
     msg = MIMEMultipart()
-    message = "El enlace del articulo es el siguiente:"
-    
+        
     # Setup the parameters of the message
     msg['From'] = sender_addr
     msg['To'] = receiver_addr
-    msg['Subject'] = "STOCK DE LA RTX 3080"
-    
+    msg['Subject'] = subject
+        
     # Add in the message body
-    msg.attach(MIMEText(message, 'plain'))
-    msg.attach(MIMEText(URL, 'plain'))
-    
+    msg.attach(MIMEText(body, 'plain'))
+        
     # Create server
     server = smtplib.SMTP('smtp.gmail.com: 587')
-    
     server.starttls()
-    
+        
     # Login Credentials for sending the mail
     server.login(sender_addr, pwd)
-    
-    
+        
     # Send the message via the server.
     server.sendmail(msg['From'], msg['To'], msg.as_string())
-    print("THE BOMB HAS BEEN PLANTED")
-
     server.quit()
 
-time.sleep(5)
-driver.quit()
+def checkStock(driver):
+    stock = driver.find_elements_by_link_text("AGOTADO")
+    if stock == []:
+        message = "El enlace del articulo es el siguiente: " + URL
+        sendMsg(sender_addr, receiver_addr, "STOCK DE LA RTX 3080", message)
+        print("Mail sent at: ", time.ctime(time.time()))
+        print("")
+
+try:
+    # Start webdriver
+    driver = webdriver.Chrome(PATH)
+    driver.get(URL)
+    time.sleep(5)
+
+    # Check if there is stock
+    checkStock(driver)
+
+    for i in range(N):
+        driver.refresh()
+        time.sleep(5)
+        checkStock(driver)
+        
+    # Close webdriver
+    driver.close()
+    driver.quit()
+    print("Running - ", time.ctime(time.time()))
+    print("")
+
+except Exception as e:
+    message = str(e)
+    sendMsg(sender_addr, receiver_addr, "Error en el servidor", message)
+    print("ERROR - ", time.ctime(time.time()))
+    print(e)
+    print("")

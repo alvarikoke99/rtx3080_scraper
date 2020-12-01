@@ -1,4 +1,4 @@
-# web_scraper
+# rtx3080_scraper
 
 Using web scraping in order to check RTX 3080 stock in NVIDIA webpage
 

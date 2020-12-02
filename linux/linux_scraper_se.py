@@ -6,12 +6,12 @@ from email.mime.text import MIMEText
 import smtplib
 import random
 
-URL = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080&manufacturer=NVIDIA&gpu_filter=RTX%203090~1,RTX%203080~1,RTX%203070~1,RTX%202080%20Ti~0,RTX%202080%20SUPER~0,RTX%202080~0,RTX%202070%20SUPER~0,RTX%202070~0,RTX%202060%20SUPER~0,RTX%202060~0,GTX%201660%20Ti~0,GTX%201660%20SUPER~0,GTX%201660~0,GTX%201650%20SUPER~0,GTX%201650~0"
+URL = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080&manufacturer=NVIDIA&manufacturer_filter=NVIDIA~1,ASUS~4,EVGA~5,GAINWARD~0,GIGABYTE~3,MSI~2,PNY~2,ZOTAC~2"
 PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
-N = 4
+N = 3
 
 # code to use in crontab scheduler
 # SHELL=/bin/bash
@@ -72,7 +72,5 @@ try:
 
 except Exception as e:
     message = str(e)
-    sendMsg(sender_addr, receiver_addr, "Error en el servidor", message)
     print("ERROR - ", time.ctime(time.time()))
     print(e)
-    print("")

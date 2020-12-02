@@ -72,5 +72,6 @@ try:
 
 except Exception as e:
     message = str(e)
+    sendMsg(sender_addr, receiver_addr, "Error en el servidor", message)
     print("ERROR - ", time.ctime(time.time()))
     print(e)

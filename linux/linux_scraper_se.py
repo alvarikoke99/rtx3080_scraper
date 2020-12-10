@@ -6,12 +6,13 @@ from email.mime.text import MIMEText
 import smtplib
 import random
 
-URL = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
+URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080&manufacturer=NVIDIA&manufacturer_filter=NVIDIA~1,ASUS~4,EVGA~5,GAINWARD~0,GIGABYTE~3,MSI~2,PNY~2,ZOTAC~2"
+URL_2 = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
 PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
-N = 3
+N = 0
 
 # code to use in crontab scheduler
 # SHELL=/bin/bash
@@ -40,11 +41,19 @@ def sendMsg(sender_addr, receiver_addr, subject, body):
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
 
-def checkStock(driver):
+def checkStockFE(driver):
     stock = driver.find_elements_by_link_text("AGOTADO")
     if stock == []:
-        message = "El enlace del articulo es el siguiente: " + URL
-        sendMsg(sender_addr, receiver_addr, "STOCK DE LA RTX 3080", message)
+        message = "El enlace del articulo es el siguiente: " + URL_1
+        sendMsg(sender_addr, receiver_addr, "STOCK DE RTX 3080", message)
+        print("Mail sent at: ", time.ctime(time.time()))
+        print("")
+
+def checkStockASUS(driver):
+    notify = driver.find_elements_by_id("notify-me")
+    if notify == []:
+        message = "El enlace del articulo es el siguiente: " + URL_2
+        sendMsg(sender_addr, receiver_addr, "STOCK DE ASUS TUF RTX 3080", message)
         print("Mail sent at: ", time.ctime(time.time()))
         print("")
 
@@ -53,19 +62,23 @@ try:
     options = Options()
     options.headless = True
     driver = webdriver.Firefox(options=options, executable_path=PATH)
-    driver.get(URL)
+    driver.get(URL_1)
     time.sleep(5)
 
-    # Check if there is stock
-    checkStock(driver)
+    # Check if there is stock of FE
+    checkStockFE(driver)
 
-    for i in range(N):
-        driver.refresh()
-        time.sleep(5)
-        checkStock(driver)
+    # Check if there is stock of ASUS TUF
+    driver.get(URL_2)
+    time.sleep(5)
+    checkStockASUS(driver)
+
+    #for i in range(N):
+    #    driver.refresh()
+    #    time.sleep(5)
+    #    checkStockFE(driver)
         
     # Close webdriver
-    driver.close()
     driver.quit()
     print("Running - ", time.ctime(time.time()))
     print("")

@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 import smtplib
 import random
 
-URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080&manufacturer=NVIDIA&manufacturer_filter=NVIDIA~1,ASUS~4,EVGA~5,GAINWARD~0,GIGABYTE~3,MSI~2,PNY~2,ZOTAC~2"
+URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_2 = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
 PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"

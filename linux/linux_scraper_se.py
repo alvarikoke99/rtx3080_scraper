@@ -84,7 +84,7 @@ try:
     print("")
 
 except Exception as e:
-    message = str(e)
+    message = traceback.format_exc()
     sendMsg(sender_addr, receiver_addr, "Error en el servidor", message)
     print("ERROR - ", time.ctime(time.time()))
     traceback.print_exc()

@@ -3,6 +3,7 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
+import traceback
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
@@ -55,14 +56,14 @@ try:
     # Start webdriver
     driver = webdriver.Chrome(PATH)
     driver.get(URL_1)
-    time.sleep(5)
+    time.sleep(2)
 
     # Check if there is stock of FE
     checkStockFE(driver)
 
     # Check if there is stock of ASUS TUF
     driver.get(URL_2)
-    time.sleep(5)
+    time.sleep(2)
     checkStockASUS(driver)
 
     #for i in range(N):
@@ -79,4 +80,5 @@ except Exception as e:
     message = str(e)
     sendMsg(sender_addr, receiver_addr, "Error en el servidor", message)
     print("ERROR - ", time.ctime(time.time()))
-    print(e)
+    traceback.print_exc()
+    print("")

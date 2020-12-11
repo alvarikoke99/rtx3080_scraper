@@ -4,7 +4,7 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
-import random
+import traceback
 
 URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_2 = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
@@ -63,14 +63,14 @@ try:
     options.headless = True
     driver = webdriver.Firefox(options=options, executable_path=PATH)
     driver.get(URL_1)
-    time.sleep(5)
+    time.sleep(2)
 
     # Check if there is stock of FE
     checkStockFE(driver)
 
     # Check if there is stock of ASUS TUF
     driver.get(URL_2)
-    time.sleep(5)
+    time.sleep(2)
     checkStockASUS(driver)
 
     #for i in range(N):
@@ -87,4 +87,5 @@ except Exception as e:
     message = str(e)
     sendMsg(sender_addr, receiver_addr, "Error en el servidor", message)
     print("ERROR - ", time.ctime(time.time()))
-    print(e)
+    traceback.print_exc()
+    print("")

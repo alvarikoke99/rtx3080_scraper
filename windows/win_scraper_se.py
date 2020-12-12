@@ -75,7 +75,6 @@ except Exception as e:
     sendMsg(sender_addr, receiver_addr, "Error en el servidor", error_trace)
     print("ERROR - ", time.ctime(time.time()))
     print(error_trace)
-    print("")
 
 finally:
     # Close webdriver

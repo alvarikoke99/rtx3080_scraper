@@ -67,8 +67,6 @@ try:
         time.sleep(1)
         checkStockPcComp(driver, "STOCK DE ASUS TUF RTX 3080", URL_ASUS)
         
-    # Close webdriver
-    driver.quit()
     print("Running - ", time.ctime(time.time()))
     print("")
 
@@ -78,3 +76,8 @@ except Exception as e:
     print("ERROR - ", time.ctime(time.time()))
     print(error_trace)
     print("")
+
+finally:
+    # Close webdriver
+    driver.close()
+    driver.quit()

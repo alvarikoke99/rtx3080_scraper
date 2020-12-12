@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 import traceback
+import os
 
 URL_NVIDIA = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_ASUS = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
@@ -75,8 +76,6 @@ try:
         time.sleep(1)
         checkStockPcComp(driver, "STOCK DE ASUS TUF RTX 3080", URL_ASUS)
         
-    # Close webdriver
-    driver.quit()
     print("Running - ", time.ctime(time.time()))
     print("")
 
@@ -86,3 +85,9 @@ except Exception as e:
     print("ERROR - ", time.ctime(time.time()))
     print(error_trace)
     print("")
+
+finally:
+    # Close webdriver
+    driver.close()
+    driver.quit()
+    os.system("killall chromium-browser")

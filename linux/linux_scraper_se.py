@@ -13,7 +13,7 @@ PATH = "/usr/lib/chromium-browser/chromedriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
-N = 0
+N = 1
 
 # code to use in crontab scheduler
 # SHELL=/bin/bash
@@ -63,21 +63,17 @@ try:
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(options=options, executable_path=PATH)
-    driver.get(URL_1)
-    time.sleep(2)
 
-    # Check if there is stock of FE
-    checkStockFE(driver)
+    for i in range(N):
+        # Check if there is stock of FE
+        driver.get(URL_1)
+        time.sleep(2)
+        checkStockFE(driver)
 
-    # Check if there is stock of ASUS TUF
-    driver.get(URL_2)
-    time.sleep(2)
-    checkStockASUS(driver)
-
-    #for i in range(N):
-    #    driver.refresh()
-    #    time.sleep(5)
-    #    checkStockFE(driver)
+        # Check if there is stock of ASUS TUF
+        driver.get(URL_2)
+        time.sleep(2)
+        checkStockASUS(driver)
         
     # Close webdriver
     driver.quit()

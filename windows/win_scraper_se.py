@@ -11,7 +11,7 @@ URL_2 = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
-N = 0
+N = 1
 
 def sendMsg(sender_addr, receiver_addr, subject, body):
     # Create message object instance
@@ -55,21 +55,17 @@ def checkStockASUS(driver):
 try:
     # Start webdriver
     driver = webdriver.Chrome(PATH)
-    driver.get(URL_1)
-    time.sleep(2)
+    
+    for i in range(N):
+        # Check if there is stock of FE
+        driver.get(URL_1)
+        time.sleep(2)
+        checkStockFE(driver)
 
-    # Check if there is stock of FE
-    checkStockFE(driver)
-
-    # Check if there is stock of ASUS TUF
-    driver.get(URL_2)
-    time.sleep(2)
-    checkStockASUS(driver)
-
-    #for i in range(N):
-    #    driver.refresh()
-    #    time.sleep(5)
-    #    checkStockFE(driver)
+        # Check if there is stock of ASUS TUF
+        driver.get(URL_2)
+        time.sleep(2)
+        checkStockASUS(driver)
         
     # Close webdriver
     driver.quit()

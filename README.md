@@ -33,7 +33,7 @@ SHELL=/bin/bash
 * 8-23,0-3 * * * DISPLAY=:0 /usr/bin/python3 /home/alvar/Documentos/Scraper/linux_scraper_se.py >> /home/alvar/Documentos/Scraper/log.out
 ```
 
-* `* 8-23,0-3 * * *` represents: “At every minute past every hour from 8 through 23 and every hour from 0 through 3.”
+* `* 8-23,0-3 * * *` represents: “At every minute past every hour from 8 through 23 and every hour from 0 through 3”.
 * It is very important that you use absolute paths and avoid using environment variables. If that is not the case the script won´t be executed properly.
 * `SHELL=/bin/bash` makes sure that the terminal used is bash.
 * `DISPLAY=:0` may be needed in order to initialise the display from crontab and avoid errors when using webdriver,

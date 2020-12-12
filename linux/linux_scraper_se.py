@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -8,7 +8,8 @@ import traceback
 
 URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_2 = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
-PATH = "/usr/local/bin/geckodriver"
+PATH = "/usr/lib/chromium-browser/chromedriver"
+#PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
@@ -61,7 +62,7 @@ try:
     # Start webdriver
     options = Options()
     options.headless = True
-    driver = webdriver.Firefox(options=options, executable_path=PATH)
+    driver = webdriver.Chrome(options=options, executable_path=PATH)
     driver.get(URL_1)
     time.sleep(2)
 

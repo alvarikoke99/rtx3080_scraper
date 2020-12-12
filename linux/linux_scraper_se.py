@@ -6,8 +6,8 @@ from email.mime.text import MIMEText
 import smtplib
 import traceback
 
-URL_1 = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
-URL_2 = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
+URL_NVIDIA = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
+URL_ASUS = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
 PATH = "/usr/lib/chromium-browser/chromedriver"
 #PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"
@@ -42,19 +42,19 @@ def sendMsg(sender_addr, receiver_addr, subject, body):
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
 
-def checkStockFE(driver):
+def checkStockNvidia(driver):
     stock = driver.find_elements_by_link_text("AGOTADO")
     if stock == []:
-        message = "El enlace del articulo es el siguiente: " + URL_1
+        message = "El enlace del articulo es el siguiente: " + URL_NVIDIA
         sendMsg(sender_addr, receiver_addr, "STOCK DE RTX 3080", message)
         print("Mail sent at: ", time.ctime(time.time()))
         print("")
 
-def checkStockASUS(driver):
+def checkStockPcComp(driver, subject, URL):
     notify = driver.find_elements_by_id("notify-me")
     if notify == []:
-        message = "El enlace del articulo es el siguiente: " + URL_2
-        sendMsg(sender_addr, receiver_addr, "STOCK DE ASUS TUF RTX 3080", message)
+        message = "El enlace del articulo es el siguiente: " + URL
+        sendMsg(sender_addr, receiver_addr, subject, message)
         print("Mail sent at: ", time.ctime(time.time()))
         print("")
 
@@ -66,14 +66,14 @@ try:
 
     for i in range(N):
         # Check if there is stock of FE
-        driver.get(URL_1)
-        time.sleep(2)
-        checkStockFE(driver)
+        driver.get(URL_NVIDIA)
+        time.sleep(1)
+        checkStockNvidia(driver)
 
         # Check if there is stock of ASUS TUF
-        driver.get(URL_2)
-        time.sleep(2)
-        checkStockASUS(driver)
+        driver.get(URL_ASUS)
+        time.sleep(1)
+        checkStockPcComp(driver, "STOCK DE ASUS TUF RTX 3080", URL_ASUS)
         
     # Close webdriver
     driver.quit()

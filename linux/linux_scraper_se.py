@@ -43,7 +43,7 @@ def sendMsg(sender_addr, receiver_addr, subject, body):
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
 
-def checkStockNvidia(driver):
+def checkStockNvidia():
     stock = driver.find_elements_by_link_text("AGOTADO")
     if stock == []:
         message = "El enlace del articulo es el siguiente: " + URL_NVIDIA
@@ -51,7 +51,7 @@ def checkStockNvidia(driver):
         print("Mail sent at: ", time.ctime(time.time()))
         print("")
 
-def checkStockPcComp(driver, subject, URL):
+def checkStockPcComp(subject, URL):
     notify = driver.find_elements_by_id("notify-me")
     if notify == []:
         message = "El enlace del articulo es el siguiente: " + URL
@@ -68,13 +68,13 @@ try:
     for i in range(N):
         # Check if there is stock of FE
         driver.get(URL_NVIDIA)
-        time.sleep(1)
-        checkStockNvidia(driver)
+        time.sleep(2)
+        checkStockNvidia()
 
         # Check if there is stock of ASUS TUF
         driver.get(URL_ASUS)
-        time.sleep(1)
-        checkStockPcComp(driver, "STOCK DE ASUS TUF RTX 3080", URL_ASUS)
+        time.sleep(2)
+        checkStockPcComp("STOCK DE ASUS TUF RTX 3080", URL_ASUS)
         
     print("Running - ", time.ctime(time.time()))
     print("")

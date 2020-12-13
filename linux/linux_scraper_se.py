@@ -9,7 +9,7 @@ import os
 
 URL_NVIDIA = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_ASUS = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
-PATH = "/usr/lib/chromium-browser/chromedriver"
+PATH = "/usr/bin/chromedriver"
 #PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
@@ -75,7 +75,10 @@ try:
         driver.get(URL_ASUS)
         time.sleep(2)
         checkStockPcComp("STOCK DE ASUS TUF RTX 3080", URL_ASUS)
-        
+
+    # Close webdriver
+    driver.close()
+    driver.quit() 
     print("Running - ", time.ctime(time.time()))
     print("")
 
@@ -84,9 +87,3 @@ except Exception as e:
     sendMsg(sender_addr, receiver_addr, "Error en el servidor", error_trace)
     print("ERROR - ", time.ctime(time.time()))
     print(error_trace)
-
-finally:
-    # Close webdriver
-    driver.close()
-    driver.quit()
-    os.system("killall chromium-browser")

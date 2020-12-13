@@ -63,6 +63,7 @@ try:
     # Start webdriver
     options = Options()
     options.headless = True
+    options.add_argument('--remote-debugging-port=45447')
     driver = webdriver.Chrome(options=options, executable_path=PATH)
 
     for i in range(N):
@@ -77,6 +78,7 @@ try:
         checkStockPcComp("STOCK DE ASUS TUF RTX 3080", URL_ASUS)
 
     # Close webdriver
+    time.sleep(5)
     driver.close()
     driver.quit() 
     print("Running - ", time.ctime(time.time()))
@@ -87,3 +89,7 @@ except Exception as e:
     sendMsg(sender_addr, receiver_addr, "Error en el servidor", error_trace)
     print("ERROR - ", time.ctime(time.time()))
     print(error_trace)
+
+finally:
+    os.system("killall chromium-browser")
+    os.system("killall chromium-chromedriver")

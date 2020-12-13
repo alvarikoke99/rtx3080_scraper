@@ -68,6 +68,7 @@ try:
         checkStockPcComp("STOCK DE ASUS TUF RTX 3080", URL_ASUS)
         
     # Close webdriver
+    time.sleep(5)
     driver.close()
     driver.quit()    
     print("Running - ", time.ctime(time.time()))

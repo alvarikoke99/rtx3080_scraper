@@ -8,19 +8,20 @@ Using web scraping in order to check RTX 3080 stock in NVIDIA webpage among othe
 
 * Download the required files for your desired OS. 
 * Check whether you have already installed the browser used in each option: 
-  * **GNU/Linux -> Chromium or Google Chrome**
+  * **GNU/Linux -> Firefox or Chromium/Google Chrome**
   * **Windows -> Google Chrome**
-  * Alternatively you can use other browsers such as **Firefox**, but check Selenium page for documentation and instructions
+  * Alternatively you can use other browsers, but check Selenium page for documentation and instructions
     on how to install webdrivers: https://selenium-python.readthedocs.io/
 * Download webdriver for selected browser:
   * **chromedriver** compatible with **Google Chrome 87** is provided in this GitHub project.
-  * Please note that the `PATH` variable in the source code must match the location of the webdriver. Default location in **GNU/Linux** is `/usr/bin` 
+  * **geckodriver** compatible with **Firefox 83** is provided in **GNU/Linux** version.
+  * Please note that the `PATH` variable in the source code must match the location of the webdriver.
 * Install **Selenium** package on latest version of **Python** using `pip3 install selenium` (check whether `pip` or `pip3` is used on you environment).
 * Enjoy!!!
 
 ## Recommended setup
 
-Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as `crontab` in **GNU/Linux**. Please note that if you are using an arm device such as a **Raspberry Pi**, the driver binaries must be compiled for the arm arquitecture. Furthermore, as the goal of this program is to be executed 24/7 it is advised that the program is run on services such as **AWS EC2** or low power devices such as the mentioned **Raspberry Pi**.
+Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as `crontab` in **GNU/Linux**. Please note that if you are using an arm device such as a **Raspberry Pi**, the driver binaries must be compiled for the arm arquitecture. Furthermore, as the goal of this program is to be executed 24/7 it is advised that the program is run on services such as **AWS EC2** or low power devices such as the mentioned **Raspberry Pi**. It is also recommended that the machine running the program has atleast 2GB of RAM.
 
 ## How to set up task scheduler in GNU/Linux
 

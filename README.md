@@ -13,7 +13,8 @@ Using web scraping in order to check RTX 3080 stock in NVIDIA webpage among othe
   * Alternatively you can use other browsers such as **Firefox**, but check Selenium page for documentation and instructions
     on how to install webdrivers: https://selenium-python.readthedocs.io/
 * Download webdriver for selected browser:
-  * **chromedriver** compatible with **Google Chrome** 87 is provided in this GitHub project.
+  * **chromedriver** compatible with **Google Chrome 87** is provided in this GitHub project.
+  * Please note that the `PATH` variable in the program must match the location of the webdriver. Default location in **GNU/Linux** is `/usr/bin' 
 * Install **Selenium** package on latest version of **Python** using `pip3 install selenium` (check whether `pip` or `pip3` is used on you environment).
 * Enjoy!!!
 

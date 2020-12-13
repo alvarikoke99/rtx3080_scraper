@@ -21,7 +21,7 @@ Using web scraping in order to check RTX 3080 stock in NVIDIA webpage among othe
 
 ## Recommended setup
 
-Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as `crontab` in **GNU/Linux**. Please note that if you are using an arm device such as a **Raspberry Pi**, the driver binaries must be compiled for the arm arquitecture. Furthermore, as the goal of this program is to be executed 24/7 it is advised that the program is run on services such as **AWS EC2** or low power devices such as the mentioned **Raspberry Pi**. It is also recommended that the machine running the program has atleast 2GB of RAM.
+Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as `crontab` in **GNU/Linux**. Please note that if you are using an arm device such as a **Raspberry Pi**, the driver binaries must be compiled for the arm arquitecture. Furthermore, as the goal of this program is to be executed 24/7 it is advised that the program is run on services such as **AWS EC2** or low power devices such as the mentioned **Raspberry Pi**. It is also recommended that the machine running the program has atleast **2GB** of **RAM**.
 
 ## How to set up task scheduler in GNU/Linux
 

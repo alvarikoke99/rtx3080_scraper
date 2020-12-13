@@ -1,16 +1,17 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
+#from selenium.webdriver.chrome.options import Options
 import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 import traceback
-import os
+#import os
 
 URL_NVIDIA = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_ASUS = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
-PATH = "/usr/bin/chromedriver"
-#PATH = "/usr/local/bin/geckodriver"
+#PATH = "/usr/bin/chromedriver"
+PATH = "/usr/local/bin/geckodriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
@@ -63,8 +64,9 @@ try:
     # Start webdriver
     options = Options()
     options.headless = True
-    options.add_argument('--remote-debugging-port=45447')
-    driver = webdriver.Chrome(options=options, executable_path=PATH)
+    #options.add_argument('--remote-debugging-port=45447')
+    driver = webdriver.Firefox(options=options, executable_path=PATH)
+    #driver = webdriver.Chrome(options=options, executable_path=PATH)
 
     for i in range(N):
         # Check if there is stock of FE
@@ -78,7 +80,7 @@ try:
         checkStockPcComp("STOCK DE ASUS TUF RTX 3080", URL_ASUS)
 
     # Close webdriver
-    time.sleep(5)
+    time.sleep(2)
     driver.close()
     driver.quit() 
     print("Running - ", time.ctime(time.time()))
@@ -90,8 +92,8 @@ except Exception as e:
     print("ERROR - ", time.ctime(time.time()))
     print(error_trace)
 
-finally:
-    os.system("killall chrome")
-    os.system("killall chromedriver")
+#finally:
+    #os.system("killall chrome")
+    #os.system("killall chromedriver")
     #os.system("killall chromium-browser")
     #os.system("killall chromium-chromedriver")

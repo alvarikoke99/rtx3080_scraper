@@ -91,5 +91,7 @@ except Exception as e:
     print(error_trace)
 
 finally:
-    os.system("killall chromium-browser")
-    os.system("killall chromium-chromedriver")
+    os.system("killall chrome")
+    os.system("killall chromedriver")
+    #os.system("killall chromium-browser")
+    #os.system("killall chromium-chromedriver")

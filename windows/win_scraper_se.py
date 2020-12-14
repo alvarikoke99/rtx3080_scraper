@@ -44,9 +44,10 @@ def checkStockNvidia():
         print("Mail sent at: ", time.ctime(time.time()))
         print("")
 
-def checkStockPcComp(subject, URL):
+def checkStockPcComp(driver, subject, URL):
     notify = driver.find_elements_by_id("notify-me")
-    if notify == []:
+    marketplaceVendor = driver.find_elements_by_class_name("js-marketplace-winner-shopname")
+    if notify == [] and marketplaceVendor == []:
         message = "El enlace del articulo es el siguiente: " + URL
         sendMsg(sender_addr, receiver_addr, subject, message)
         print("Mail sent at: ", time.ctime(time.time()))

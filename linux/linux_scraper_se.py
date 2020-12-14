@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 import traceback
-#import os
+import os
 
 URL_NVIDIA = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_ASUS = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
@@ -52,9 +52,10 @@ def checkStockNvidia():
         print("Mail sent at: ", time.ctime(time.time()))
         print("")
 
-def checkStockPcComp(subject, URL):
+def checkStockPcComp(driver, subject, URL):
     notify = driver.find_elements_by_id("notify-me")
-    if notify == []:
+    marketplaceVendor = driver.find_elements_by_class_name("js-marketplace-winner-shopname")
+    if notify == [] and marketplaceVendor == []:
         message = "El enlace del articulo es el siguiente: " + URL
         sendMsg(sender_addr, receiver_addr, subject, message)
         print("Mail sent at: ", time.ctime(time.time()))
@@ -93,6 +94,7 @@ except Exception as e:
     print(error_trace)
 
 #finally:
+    os.system("killall firefox")
     #os.system("killall chrome")
     #os.system("killall chromedriver")
     #os.system("killall chromium-browser")

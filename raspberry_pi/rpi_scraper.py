@@ -1,6 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-#from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options
 import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -10,8 +9,7 @@ import os
 
 URL_NVIDIA = "https://www.nvidia.com/es-es/shop/geforce/gpu/?page=1&limit=9&locale=es-es&category=GPU&gpu=RTX%203080"
 URL_ASUS = "https://www.pccomponentes.com/asus-tuf-geforce-rtx-3080-10gb-gddr6x"
-#PATH = "/usr/bin/chromedriver"
-PATH = "/usr/local/bin/geckodriver"
+PATH = "/usr/bin/chromedriver"
 sender_addr = "alert-mail@gmail.com"
 receiver_addr = "personal-mail@gmail.com"
 pwd = "password"
@@ -64,10 +62,10 @@ def checkStockPcComp(driver, subject, URL):
 try:
     # Start webdriver
     options = Options()
-    options.headless = True
-    #options.add_argument('--remote-debugging-port=45447')
-    driver = webdriver.Firefox(options=options, executable_path=PATH)
-    #driver = webdriver.Chrome(options=options, executable_path=PATH)
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(options=options, executable_path=PATH)
 
     for i in range(N):
         # Check if there is stock of FE

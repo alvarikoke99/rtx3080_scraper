@@ -17,7 +17,8 @@ N = 1
 
 # code to use in crontab scheduler
 # SHELL=/bin/bash
-# * 8-23,0-3 * * * DISPLAY=:0 /usr/bin/python3 /home/ubuntu/scraper/linux_scraper_se.py >> /home/ubuntu/Documentos/Scraper/log.out
+# * 8-23,0-3 * * * DISPLAY=:0  /usr/bin/python3 /home/pi/scraper/rpi_scraper_se.py >> /home/pi/scraper/log.out
+# 30 4 * * * mv /home/pi/scraper/log.out /home/pi/scraper/old_log.out
 
 def sendMsg(sender_addr, receiver_addr, subject, body):
     # Create message object instance

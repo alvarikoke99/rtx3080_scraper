@@ -15,13 +15,13 @@ Using web scraping in order to check RTX 3080 stock in NVIDIA webpage among othe
 * Download webdriver for selected browser:
   * **chromedriver** compatible with **Google Chrome 87** is provided in this GitHub project.
   * **geckodriver** compatible with **Firefox 83** is provided in **GNU/Linux** version.
-  * Please note that the `PATH` variable in the source code must match the location of the webdriver. Alternatively you can install **chromedriver** on **GNU/Linux** using `sudo apt install chromium-chromedriver`, which places the webdriver on `/usr/bin`
+  * Please note that the `PATH` variable in the source code must match the location of the webdriver. Alternatively you can install **chromedriver** on **GNU/Linux** using `sudo apt install chromium-chromedriver`, which places the webdriver on `/usr/bin`. For the **Raspberry Pi** this is the best install method.
 * Install **Selenium** package on latest version of **Python** using `pip3 install selenium` (check whether `pip` or `pip3` is used on you environment).
 * Enjoy!!!
 
 ## Recommended setup
 
-Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as `crontab` in **GNU/Linux**. Please note that if you are using an arm device such as a **Raspberry Pi**, the driver binaries must be compiled for the arm arquitecture. Furthermore, as the goal of this program is to be executed 24/7 it is advised that the program is run on services such as **AWS EC2** or low power devices such as the mentioned **Raspberry Pi**. It is also recommended that the machine running the program has atleast **2GB** of **RAM**.
+Although you can run the scraper on its own, it is highly recommended that you run it using any kind of task scheduler such as `crontab` in **GNU/Linux**. As the goal of this program is to be executed 24/7 it is advised that the program is run on services such as **AWS EC2** or low power devices such as the mentioned **Raspberry Pi**. It is also recommended that the machine running the program has atleast **2GB** of **RAM**. Please note that if you are using an arm device such as a **Raspberry Pi**, the driver binaries must be compiled for the arm arquitecture. For the **Raspberry Pi** the easiest install method is to use `sudo apt install chromium-chromedriver`, which places the webdriver on `/usr/bin` and installs the **Chromium** browser. 
 
 ## How to set up task scheduler in GNU/Linux
 

@@ -1,4 +1,5 @@
-# rtx3080_scraper
+# RTX 3080 Scraper
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Using web scraping in order to check RTX 3080 stock in NVIDIA webpage among others.
 
